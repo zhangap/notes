@@ -23,7 +23,7 @@
 
 这两个方案我本来还可以接受，然而在我真正尝试之后便放弃了，原因是Ulysses自己扩展了markdown语法，比如`{i\pi}`这段代码中`{}`和`\`都是特殊字符，我试了半天都没找到怎么在导出的markdown文件中正确显示`\`。我不甘心，于是又google解决方法，没想到没看到解决方法，反倒看到了Typora的介绍，说它是最漂亮的markdown编辑器，数学公式什么的都支持的很好，我就很好奇地打开了他家的网站。
 
-![markdown](D:\notes\images\demo\markdown.jpg)
+![markdown](images/demo/markdown.jpg)
 
 首页简洁的风格一下子就抓住了我的眼睛，一分钟之后我便爱上了这个App。
 
