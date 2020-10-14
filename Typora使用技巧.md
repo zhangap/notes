@@ -23,7 +23,7 @@
 
 这两个方案我本来还可以接受，然而在我真正尝试之后便放弃了，原因是Ulysses自己扩展了markdown语法，比如`{i\pi}`这段代码中`{}`和`\`都是特殊字符，我试了半天都没找到怎么在导出的markdown文件中正确显示`\`。我不甘心，于是又google解决方法，没想到没看到解决方法，反倒看到了Typora的介绍，说它是最漂亮的markdown编辑器，数学公式什么的都支持的很好，我就很好奇地打开了他家的网站。
 
-![markdown](images/demo/markdown.jpg)
+![markdown](images/demo/1.jpg)
 
 首页简洁的风格一下子就抓住了我的眼睛，一分钟之后我便爱上了这个App。
 
@@ -31,23 +31,25 @@
 
 Typora对于 ![[公式]](https://www.zhihu.com/equation?tex=%5CLaTeX) 语法支持的非常完善，内置的渲染引擎堪称完美，同类App我没见过比它更好的。下图是Typora内编辑数学公式的截图。
 
-![2](D:\notes\images\demo\2.jpg)
+![](images/demo/2.jpg)
 
 ## **图片**
 
-Typora对于图片渲染的支持也十分到位，可以直接拖拽图片，QQ截图可以直接粘贴（图片路径在临时文件夹），支持html code，所以可以进行缩放等操作。![3](D:\notes\images\demo\3.jpg)
+Typora对于图片渲染的支持也十分到位，可以直接拖拽图片，QQ截图可以直接粘贴（图片路径在临时文件夹），支持html code，所以可以进行缩放等操作。
+
+![](images/demo/3.jpg)
 
 ## **代码块**
 
 毫无疑问，作为一款程序员的作品，完美的代码展示是必不可少的功能。
 
-![4](D:\notes\images\demo\4.jpg)
+![](images/demo/4.jpg)
 
 ## **流程图**
 
 Typora可以直接在markdown中画流程图，而且语法简洁易懂，这是个让我异常惊喜的功能。
 
-![5](D:\notes\images\demo\5.jpg)
+![](images/demo/5.jpg)
 
 Typora使用`flowchart.js`来生成简单的SVG流程图，此外它还支持[mermaid engine](https://link.zhihu.com/?target=https%3A//mermaidjs.github.io/)。要知道，在市面上你绝少看到此类用户体验良好的作图App，更别说集成在一个markdown编辑器里面了。Typora支持三类流程图：
 
@@ -104,11 +106,13 @@ gantt
 
 Typora中的表格是完全图形化操作的，非常方便。之前用过一些App（比如emacs），可以用文字+快捷键的方式编辑表格，然而需要记很多东西，不经常用就忘了。Typora的这个是真好用。表格的快捷键也很好记，`cmd + T` (Table)。也可以很方便地编辑表格的形状，如下图
 
-![6](D:\notes\images\demo\6.jpg)
+![](images/demo/6.jpg)
 
 ## **大纲视图**
 
-Typora会自动将Heading统计作为文章的大纲，而且根据标题的级别自动进行树状归纳。这个功能真的很贴心，尤其是文章长了的时候，只需要点击大纲中的标题就能很方便地跳转。![7](D:\notes\images\demo\7.jpg)
+Typora会自动将Heading统计作为文章的大纲，而且根据标题的级别自动进行树状归纳。这个功能真的很贴心，尤其是文章长了的时候，只需要点击大纲中的标题就能很方便地跳转。
+
+![](images/demo/7.jpg)
 
 ## **快捷键**
 
