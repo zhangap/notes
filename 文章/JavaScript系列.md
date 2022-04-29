@@ -104,91 +104,106 @@
 
 26. JS继承的实现方式：
 
-    1. 原型链继承
+    1. 原型链继承：子对象首先在自己的对象空间中查找要访问的属性或方法，如果找到，就输出，如果没有找到，就沿着子对象中__proto__属性指向的原型空间对象中去查找属性或方法，如果没有找到，继续沿着原型对象空间中的__proto__查找上一级 原型对象空间中的属性或者方法，直至找到Object.prototype原型对象属性 指向的原型对象空间为止，如果还是未找到，输出null。
 
        ```javascript
-       function People() {
-         this.name  = 'zap';
-         this.favorite = ['book', 'coding', 'computer']
-       }
-       People.prototype.sayName = function() {
-         return this.name;
-       }
-       
        function Person() {
+           this.name = 'zap';
+           this.favorite = ['book', 'coding','dance'];
        }
-       Person.prototype = new People();
-       let p1  = new Person();
-       console.log(p1.sayName());
        
-       let p2 = new Person();
+       Person.prototype.sayName = function() {
+           return this.name;
+       }
+       
+       function Teacher() {
+       
+       }
+       
+       Teacher.prototype = new Person();
+       
+       const t1 = new Teacher();
+       console.log(t1.sayName(), t1.favorite);
+       
+       const t2 = new Teacher();
+       console.log(t2.sayName(), t2.favorite);
        // 这个时候更改p1的favorite，会对p2的favorite造成影响
-       p1.favorite.push('test');
-       console.log(p1.favorite);
-       console.log(p2.favorite);
+       t2.favorite.push('cooking');
+       console.log(t1.favorite, t2.favorite)
+       
        // 问题：父类构造函数中的引用类型（对象、数组）,会被所有的子实例共享，数据不能进行隔离。
+       
        ```
 
     2. 构造函数继承
 
        ```javascript
-       function People() {
-         this.name  = 'zap';
-         this.favorite = ['book', 'coding', 'computer']
-         this.showFavorite = function() {
-           return this.favorite
-         }
-       }
-       People.prototype.sayName = function() {
-         return this.name;
-       }
-       
        function Person() {
-         People.call(this);
+           this.name = 'zap';
+           this.favorite = ['book', 'coding','dance'];
+           this.showFavorite = function() {
+               return `My favorite is ${this.favorite.join(',')}`
+           }
        }
-       let p1  = new Person();
-       //这里会报错
-       // console.log(p1.sayName());
        
-       let p2 = new Person();
-       // 这个时候更改p1的favorite，会对p2的favorite造成影响
-       p1.favorite.push('test');
-       // ['book', 'coding', 'computer', 'test']
-       console.log(p1.favorite);
-       // ['book', 'coding', 'computer']
-       console.log(p2.favorite);
-       console.log(p2.favorite);
+       Person.prototype.sayName = function() {
+           return this.name;
+       }
+       
+       // 基于构造函数的继承
+       function Teacher() {
+           Person.call(this);
+       }
+       
+       const t1 = new Teacher();
+       console.log(t1.name)
+       // 这里会打印undefined，说明子类没有继承到父类原型链上的sayName方法
+       console.log(typeof t1.sayName)
+       
+       const t2 = new Teacher();
+       console.log(t2.name);
+       t1.favorite.push('cooking');
+       
+       // [ 'book', 'coding', 'dance', 'cooking' ] 'My favorite is book,coding,dance,cooking'
+       console.log(t1.favorite, t1.showFavorite());
+       // [ 'book', 'coding', 'dance' ] 'My favorite is book,coding,dance'
+       console.log(t2.favorite,t2.showFavorite())
        
        //问题:构造函数继承解决了数据共享的问题，但是会带来两个问题：一个是不能继承父类原型链上的方法，如果要继承父类的方法，都需要写在构造函数中；二是如果方法写在构造函数中，那么每次实例化一个子类，方法都要重新创建，从性能上来讲，是一种损失。
        ```
 
-    3.  组合继承
+    3. 组合继承
 
        ```javascript
-        function People() {
-          this.favorite = ['book', 'coding'];
-        }
-       People.prototype.getFavorite = function() {
-         return this.favorite;
+        function Person() {
+           this.favorite = ['book', 'coding','dance'];
+       }
+       Person.prototype.showFavorite = function() {
+           return `My favorite is ${this.favorite.join(',')}`
+       }
+       Person.prototype.sayName = function() {
+           return this.name;
        }
        
-       function Person(name) {
-         People.call(this);
-         this.name = name;
+       // 基于构造函数的继承
+       function Teacher(name) {
+           Person.call(this);
+           this.name = name;
        }
-       Person.prototype = new People();
+       
+       Teacher.prototype = new Person();
        // 需要重新设置子类的constructor，Person.prototype = new People()相当于子类的原型对象完全被覆盖了
-       Person.prototype.constructor = Person;
+       Teacher.prototype.constructor = Teacher;
        
-       let p1 = new Person('zhangsan');
-       let p2 = new Person('lisi');
+       const t1 = new Teacher('t1');
+       t1.favorite.push('cooking');
+       // t1 My favorite is book,coding,dance,cooking
+       console.log(t1.sayName(), t1.showFavorite())
        
-       p1.favorite.push('p1-add')
-       
-       console.log(p1);
-       console.log(p2);
-       
-       // 问题：父类构造函数被调用了两次
+       const t2 = new Teacher('t2');
+       // t2 My favorite is book,coding,dance
+       console.log(t2.sayName(), t2.showFavorite())
+       // 问题：父类构造函数被调用了两次，一次是子类构造函数中，执行call函数，一次是设置子类原型时被new了一个父类。
        ```
 
     4. 寄生组合继承
