@@ -169,7 +169,7 @@
        // [ 'book', 'coding', 'dance' ] 'My favorite is book,coding,dance'
        console.log(t2.favorite,t2.showFavorite())
        
-       //问题:构造函数继承解决了数据共享的问题，但是会带来两个问题：一个是不能继承父类原型链上的方法，如果要继承父类的方法，都需要写在构造函数中；二是如果方法写在构造函数中，那么每次实例化一个子类，方法都要重新创建，从性能上来讲，是一种损失。
+       //问题:构造函数继承解决了数据共享的问题，但是会带来两个问题：一个是不能继承父类原型链上的方法，如果要继承父类的方法，都需要写在构造函数中；二是如果方法写在构造函数中，那么每次实例化一个子类，方法都要重新创建，从性能(执行速度和内存)上来讲，是一种损失。
        ```
 
     3. 组合继承
@@ -220,6 +220,7 @@
                Parent.call(this);
                this.topic = topic;
            }
+           inherit(Child, Parent);
        
            function inherit(child, parent) {
                var prototype = createObj(parent.prototype);
@@ -238,8 +239,39 @@
            p2.name = 'lisi';
            console.log(p1);
            console.log(p2);
+       //问题：这种方式的寄生组合继承，在继承的方法inherit中，是构造了一个新的中间对象，中间对象会开辟一块新的对象空间，那么把新的对象赋值给子类的prototype，就会覆盖掉子类原型上定义的方法和属性。所以使用此种方式时，要先执行继承的方法，然后再对子类做扩展（添加原型属性和方法）
        ```
 
+    5. 寄生组合继承2
+
+       ```javascript
+       function Parent() {
+           this.flag = 'parent';
+           this.name = 'zhangaiping';
+       }
+       Parent.prototype.sayName = function() {
+           return this.name;
+       }
+       function Child(topic) {
+           Parent.call(this);
+           this.topic = topic;
+       }
+       
+       function _extend(child, parent) {
+          Object.setPrototypeOf(child.prototype, parent.prototype)
+       }
+       _extend(Child,Parent);
+       
+       let p1 =  new Child('teacher');
+       p1.name = 'zhangsan'
+       let p2 = new Child('student');
+       p2.name = 'lisi';
+       console.log(p1);
+       console.log(p2);
+       ```
+       
+       
+       
     5. ES6继承
 
        ```javascript
