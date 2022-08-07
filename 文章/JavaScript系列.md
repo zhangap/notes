@@ -18,7 +18,7 @@
    3. 然后执行CreateObj函数，此时的CreateObj函数执行上下文中的this指向了tempObj对象。
    4. 最后返回tempObj对象。
    
-9. 嵌套函数中的this不会继承外层函数的this。要解决这个问题，有两种方法：一是可以定义一个变量self，在内层函数中访问，二十直接使用箭头函数（箭头函数不会创建自己的执行上下文）。
+9. 嵌套函数中的this不会继承外层函数的this。要解决这个问题，有两种方法：一是可以定义一个变量self，在内层函数中访问，二是直接使用箭头函数（箭头函数不会创建自己的执行上下文）。
 
 10. JavaScript中的八种数据类型：Undefined/Null/Boolean/String/Number/BigInt/Symbol/Object
 
