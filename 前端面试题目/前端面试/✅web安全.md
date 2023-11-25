@@ -69,8 +69,6 @@
 2. 使用token验证，提高了黑客的破解成本（token不放在cookie里，黑客获取和解析token都需要成本），可以凑合着用；
 3. 添加请求来源限制，通过origin header 和 referer header 来判断源域名，靠浏览器不是很靠谱。
 
-
-
 #### 扩展
 
 web安全聊完之后，可以聊一聊：

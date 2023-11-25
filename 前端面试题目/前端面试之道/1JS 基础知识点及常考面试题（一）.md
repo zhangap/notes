@@ -69,7 +69,7 @@ const p1 = {
 }
 const p2 = test(p1)
 console.log(p1) // -> ?
-console.log(p2) // -> ?
+console.log(p2) // -> ? 
 ```
 
 对于以上代码，你是否能正确的写出结果呢？接下来让我为你解析一番：
